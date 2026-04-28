@@ -1,0 +1,185 @@
+"""
+Python 项目结构详解
+"""
+
+print("=== 现代 Python 项目结构 ===")
+print("""
+myproject/
+├── pyproject.toml            # 核心配置文件（替代 setup.py）
+├── README.md
+├── LICENSE
+├── .gitignore
+├── .python-version           # Python 版本（pyenv 用）
+│
+├── src/                      # 源码目录
+│   └── mypackage/
+│       ├── __init__.py       # 包标识 + 公共 API
+│       ├── __main__.py       # python -m mypackage 入口
+│       ├── core.py
+│       ├── models.py
+│       ├── utils.py
+│       └── cli.py            # 命令行接口
+│
+├── tests/                    # 测试
+│   ├── __init__.py
+│   ├── conftest.py           # pytest 配置
+│   ├── test_core.py
+│   └── test_models.py
+│
+├── docs/                     # 文档
+│   └── index.md
+│
+└── scripts/                  # 工具脚本
+    └── setup_dev.sh
+""".strip())
+
+print("\n\n=== pyproject.toml 详解 ===")
+print("""
+# pyproject.toml — 统一的项目配置文件
+# 相当于 C++ 的 CMakeLists.txt + .clang-format + conanfile.txt
+
+[build-system]
+# 构建后端（类似 cmake 版本要求）
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "mypackage"
+version = "1.0.0"
+description = "My awesome package"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+
+# 依赖（类似 CMake 的 find_package）
+dependencies = [
+    "requests>=2.28",
+    "click>=8.0",
+    "pydantic>=2.0",
+]
+
+# 可选依赖组
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "mypy>=1.0",
+    "ruff>=0.1",
+]
+docs = [
+    "sphinx>=7.0",
+    "sphinx-rtd-theme",
+]
+
+# 命令行入口点
+[project.scripts]
+mycli = "mypackage.cli:main"
+# 安装后可以直接运行: mycli --help
+
+# 工具配置（集中在一个文件中）
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+""".strip())
+
+print("\n\n=== __init__.py 的作用 ===")
+print("""
+# src/mypackage/__init__.py
+
+# 1. 标记目录为 Python 包
+# 2. 定义公共 API
+# 3. 在 import mypackage 时执行
+
+from .core import MainClass
+from .utils import helper
+
+__all__ = ["MainClass", "helper"]
+__version__ = "1.0.0"
+
+# 用户只需:
+# from mypackage import MainClass
+# 而不是:
+# from mypackage.core import MainClass
+""".strip())
+
+print("\n\n=== __main__.py — 包的入口 ===")
+print("""
+# src/mypackage/__main__.py
+# 允许: python -m mypackage
+
+from .cli import main
+
+if __name__ == "__main__":
+    main()
+
+# 运行方式:
+# python -m mypackage         # 开发时
+# mycli                       # 安装后（通过 entry_points）
+""".strip())
+
+print("\n\n=== .gitignore (Python 项目) ===")
+print("""
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# 虚拟环境
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# 测试
+.coverage
+htmlcov/
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+""".strip())
+
+print("\n\n=== 开发工作流 ===")
+print("""
+# 1. 创建项目
+mkdir myproject && cd myproject
+
+# 2. 创建虚拟环境
+python3 -m venv .venv
+source .venv/bin/activate
+
+# 3. 开发模式安装（-e = editable，类似 cmake --install 到本地）
+pip install -e ".[dev]"
+# 修改代码后无需重新安装
+
+# 4. 运行测试
+pytest
+
+# 5. 类型检查
+mypy src/
+
+# 6. 代码格式化和 lint
+ruff check src/
+ruff format src/
+
+# 7. 构建发布包
+python -m build
+# 生成 dist/mypackage-1.0.0.tar.gz
+# 生成 dist/mypackage-1.0.0-py3-none-any.whl
+
+# 8. 发布到 PyPI
+# twine upload dist/*
+""".strip())
