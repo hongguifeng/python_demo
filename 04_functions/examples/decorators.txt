@@ -1,0 +1,28 @@
+=== 装饰器本质 ===
+  [before] 调用 greet
+  [after]  greet 返回 Hello, World!
+Hello, World!
+函数名保持: greet
+
+=== 实用装饰器：计时器 ===
+  slow_sum 耗时: 0.015453s
+
+=== 带参数的装饰器 ===
+  尝试 1/3 失败: 网络错误
+  尝试 2/3 失败: 网络错误
+结果: 成功!
+
+=== 装饰器堆叠（组合）===
+堆叠装饰器: <b><i>Hello, World</i></b>
+
+=== 类作为装饰器 ===
+  计算 1 + 2...
+first call:  3
+cached call: 3
+缓存内容: {(1, 2): 3}
+
+=== 常见内置装饰器 ===
+radius: 5
+area: 78.54
+new area: 314.16
+from_diameter(20): radius=10.0

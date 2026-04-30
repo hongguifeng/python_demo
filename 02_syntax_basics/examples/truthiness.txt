@@ -1,0 +1,36 @@
+=== Falsy 值 ===
+  bool(None                ) = False
+  bool(False               ) = False
+  bool(0                   ) = False
+  bool(0.0                 ) = False
+  bool(0j                  ) = False
+  bool(''                  ) = False
+  bool([]                  ) = False
+  bool(()                  ) = False
+  bool({}                  ) = False
+  bool(set()               ) = False
+  bool(frozenset()         ) = False
+
+=== Truthy 值 ===
+  bool(True                ) = True
+  bool(1                   ) = True
+  bool(-1                  ) = True
+  bool(0.1                 ) = True
+  bool('hello'             ) = True
+  bool([0]                 ) = True
+  bool((0,)                ) = True
+  bool({'': ''}            ) = True
+  bool({0}                 ) = True
+
+=== 实际应用 ===
+  C 风格: items 为空
+  Python 风格: items 为空
+  value is None
+
+=== 短路求值 ===
+  "" or "default" = 'default'
+  "hello" and "world" = 'world'
+  "" and "world" = ''
+
+=== 三元运算符 ===
+  x = -5, abs = 5

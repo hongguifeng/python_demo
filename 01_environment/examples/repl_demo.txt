@@ -1,0 +1,30 @@
+=== dir() 示例 ===
+list 的公开方法: ['append', 'clear', 'copy', 'count', 'extend', 'index', 'insert', 'pop', 'remove', 'reverse', 'sort']
+
+=== type() 示例 ===
+  42                   -> int
+  3.14                 -> float
+  hello                -> str
+  [1, 2]               -> list
+  (1, 2)               -> tuple
+  {1, 2}               -> set
+  {'a': 1}             -> dict
+
+=== __doc__ 示例 ===
+list.append 的文档:
+  Append object to the end of the list.
+
+=== id() 示例（类似取地址 &） ===
+id(a) = 0x70ab98fa7b40
+id(b) = 0x70ab98fa7b40  (与 a 相同 — 同一个对象)
+id(c) = 0x70ab9903b080  (与 a 不同 — 不同对象)
+a is b: True
+a is c: False
+a == c: True
+
+=== sys 模块信息 ===
+Python 版本: 3.12.3 (main, Mar 23 2026, 19:04:32) [GCC 13.3.0]
+平台: linux
+整数最大位数: 无限制 (Python 原生支持大整数)
+  2^100 = 1267650600228229401496703205376
+  在 C 中这需要 GMP 库!

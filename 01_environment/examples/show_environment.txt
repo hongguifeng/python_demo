@@ -1,0 +1,41 @@
+============================================================
+Python 运行环境信息
+============================================================
+
+--- 解释器信息 ---
+  版本:       3.12.3 (main, Mar 23 2026, 19:04:32) [GCC 13.3.0]
+  实现:       cpython 3.12
+  编译器:     GCC 13.3.0
+  可执行文件: /usr/bin/python3
+
+--- 平台信息 ---
+  操作系统:   Linux 6.6.87.2-microsoft-standard-WSL2
+  架构:       x86_64
+  指针大小:   64 位
+  字节序:     little
+
+--- 路径信息 ---
+  模块搜索路径 (类似 -I include path):
+    /home/gfhong/testcode/python_demo/01_environment/examples
+    /usr/lib/python312.zip
+    /usr/lib/python3.12
+    /usr/lib/python3.12/lib-dynload
+    /home/gfhong/.local/lib/python3.12/site-packages
+    ... 共 7 个路径
+
+--- 资源限制 ---
+  最大递归深度:     1000
+  整数最大长度:     无限制
+  浮点数信息:       max=1.80e+308, epsilon=2.220446049250313e-16
+
+--- 虚拟环境检测 ---
+  未在虚拟环境中运行
+  (建议: python3 -m venv myenv && source myenv/bin/activate)
+
+--- 对象内存开销 (C/C++ 开发者关注) ---
+  int 对象大小:     28 bytes  (C 中 int 只需 4 bytes)
+  float 对象大小:   24 bytes (C 中 double 只需 8 bytes)
+  空 str 大小:      41 bytes
+  空 list 大小:     56 bytes  (C 中空数组 0 bytes)
+  空 dict 大小:     64 bytes
+  注意：Python 的每个对象都有引用计数和类型指针的开销

@@ -1,0 +1,40 @@
+=== add(a, b) 的字节码 ===
+ 13           0 RESUME                   0
+
+ 14           2 LOAD_FAST                0 (a)
+              4 LOAD_FAST                1 (b)
+              6 BINARY_OP                0 (+)
+             10 RETURN_VALUE
+
+=== 更复杂的例子 ===
+ 21           0 RESUME                   0
+
+ 22           2 LOAD_FAST                0 (n)
+              4 LOAD_CONST               1 (1)
+              6 COMPARE_OP              26 (<=)
+             10 POP_JUMP_IF_FALSE        1 (to 14)
+
+ 23          12 RETURN_CONST             1 (1)
+
+ 24     >>   14 LOAD_FAST                0 (n)
+             16 LOAD_GLOBAL              1 (NULL + factorial)
+             26 LOAD_FAST                0 (n)
+             28 LOAD_CONST               1 (1)
+             30 BINARY_OP               10 (-)
+             34 CALL                     1
+             42 BINARY_OP                5 (*)
+             46 RETURN_VALUE
+
+=== 代码对象属性 ===
+  函数名:     factorial
+  参数数量:   1
+  局部变量:   ('n',)
+  常量:       (None, 1)
+  字节码大小: 48 bytes
+  源文件:     /home/gfhong/testcode/python_demo/./01_environment/examples/bytecode_demo.py
+  起始行号:   21
+
+=== 验证 ===
+  add(3, 4)      = 7
+  factorial(10)  = 3628800
+  factorial(20)  = 2432902008176640000

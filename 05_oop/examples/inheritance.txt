@@ -1,0 +1,30 @@
+=== 基本继承 ===
+  Dog('Buddy'): Buddy says Woof!
+  Cat('Whiskers'): Whiskers says Meow!
+  Dog('Rex'): Rex says Woof!
+
+isinstance(Dog('X'), Animal): True
+
+=== 多重继承与 MRO ===
+调用 D().method():
+    D.method
+    B.method
+    C.method
+    A.method
+
+MRO: ['D', 'B', 'C', 'A', 'object']
+
+=== super() 详解 ===
+创建 Child():
+    Child.__init__
+    Left.__init__
+    Right.__init__
+    Base.__init__
+MRO: ['Child', 'Left', 'Right', 'Base', 'object']
+
+=== Mixin 模式 ===
+repr:  User(name='Alice', email='alice@example.com')
+json:  {"name": "Alice", "email": "alice@example.com"}
+
+=== 抽象基类 (ABC) — 类似 C++ 的纯虚函数 ===
+Rectangle: area=12.00, perimeter=14.00

@@ -1,0 +1,29 @@
+=== 类也是对象 ===
+Dog 的类型: <class 'type'>
+Dog 的类型的类型: <class 'type'>
+type(type) = <class 'type'>
+
+=== type() 动态创建类 ===
+class 语句: Point1(1, 2)
+type() 创建: Point2(3, 4)
+
+=== 自定义元类 ===
+  ⚠ MyService.validate() 缺少 docstring
+MyService 的元类: <class '__main__.ValidatedMeta'>
+
+=== 实用元类：单例模式 ===
+  Database 初始化（只会执行一次）
+db1 is db2: True
+
+=== __init_subclass__ — 元类的简化替代 ===
+  注册插件: jsonplugin
+  注册插件: xmlplugin
+  注册插件: csvplugin
+已注册的插件: ['jsonplugin', 'xmlplugin', 'csvplugin']
+  jsonplugin.process() = json
+  xmlplugin.process() = xml
+  csvplugin.process() = csv
+
+=== __class_getitem__ — 泛型语法支持 ===
+  TypedList[int] 被调用
+  TypedList[str] 被调用

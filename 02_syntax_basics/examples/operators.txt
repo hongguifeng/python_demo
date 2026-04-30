@@ -1,0 +1,42 @@
+=== 算术运算符 ===
+7 / 2  = 3.5
+7 // 2 = 3
+7 % 2  = 1
+2 ** 10 = 1024
+2 ** 100 = 1267650600228229401496703205376
+
+负数取模:
+Python: -7 % 3 = 2
+C/C++:  -7 % 3 = -1（向零取整）
+
+=== 比较运算符 ===
+1 < 5 < 10: True
+1 < 5 and 5 < 10: True
+
+a == b: True
+a is b: False
+
+256 is 256: True
+
+=== 逻辑运算符 ===
+True and False: False
+True or False:  True
+not True:       False
+
+'hello' or 'world': 'hello'
+'' or 'world':      'world'
+'hello' and 'world': 'world'
+'' and 'world':      ''
+
+=== 位运算符（和 C 一样）===
+0xFF & 0x0F = 0x0f
+0x0F | 0xF0 = 0xff
+0xFF ^ 0x0F = 0xf0
+~0x00 = -1
+1 << 10 = 1024
+
+=== 没有的运算符 ===
+x += 1: x = 11
+
+=== 海象运算符 := (Python 3.8+) ===
+x^2 > 50 的结果: [64, 81, 100]

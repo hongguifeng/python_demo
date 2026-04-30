@@ -1,0 +1,54 @@
+=== 引用计数基础 ===
+创建后:         refcount = 2
+b = a 后:       refcount = 3
+c = a 后:       refcount = 4
+列表中3个引用后: refcount = 7
+del c 后:       refcount = 6
+lst.clear() 后: refcount = 3
+del b 后:       refcount = 2
+
+=== 引用计数归零 → 立即销毁 ===
+演示确定性销毁:
+  + 创建 A
+  准备删除引用...
+  - 销毁 A
+  删除完成
+
+重新赋值触发销毁:
+  + 创建 B
+  + 创建 C
+  - 销毁 B
+  - 销毁 C
+
+=== 小整数缓存 ===
+256 is 256: True (缓存)
+
+整数 42 的引用计数: 4294967295 (很多内部引用)
+整数 12345678 的引用计数: 3
+
+=== 字符串驻留 (Interning) ===
+"hello" is "hello": True (驻留)
+"hello world!" is "hello world!": True
+intern 后: True
+
+=== 对象内存布局 (C 开发者视角) ===
+int 42:
+  id (地址): 0xb365c8
+  type:      <class 'int'>
+  size:      28 bytes
+
+空 list:
+  size: 56 bytes (含 ob_refcnt + ob_type + 列表头)
+
+对象大小对比:
+  int(0)                        28 bytes
+  int(2^30)                     32 bytes
+  int(2^100)                    40 bytes
+  float(0.0)                    24 bytes
+  str('')                       41 bytes
+  str('hello')                  46 bytes
+  list([])                      56 bytes
+  list([0]*10)                 136 bytes
+  dict({})                      64 bytes
+  tuple(())                     40 bytes
+  set()                        216 bytes

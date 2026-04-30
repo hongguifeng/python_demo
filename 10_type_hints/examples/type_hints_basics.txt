@@ -1,0 +1,29 @@
+=== 基本类型注解 ===
+add(1, 2) = 3
+  Hello, World!
+add("hello", " world") = hello world
+
+=== 容器类型 ===
+average: 2.5
+word_count: {'hello': 2, 'world': 1, 'python': 1}
+
+=== Optional 和 Union ===
+find_user(1) = Alice
+find_user(99) = None
+process(42) = 整数: 42
+process('hi') = 字符串: hi
+
+=== 类型别名 ===
+distance: 5.00
+
+=== Callable 类型 ===
+apply(add, 3, 4) = 7
+apply(lambda a,b: a*b, 3, 4) = 12
+
+=== 类中的类型提示 ===
+Stack: peek=3, pop=3, empty=False
+
+=== 运行时获取类型注解 ===
+add 的注解: {'a': <class 'int'>, 'b': <class 'int'>, 'return': <class 'int'>}
+Stack.push 的注解: {'item': <class 'int'>, 'return': None}
+解析后的注解: {'a': <class 'int'>, 'b': <class 'int'>, 'return': <class 'int'>}

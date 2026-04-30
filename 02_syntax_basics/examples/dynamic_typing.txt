@@ -1,0 +1,19 @@
+=== 变量可以绑定到任意类型 ===
+x = 42                    type = int
+x = 3.14                  type = float
+x = 'hello'               type = str
+x = [1, 2, 3]             type = list
+x = {'key': 'value'}      type = dict
+x = <function <lambda> at 0x77db9a3da340>  type = function
+x(21) = 42
+
+=== isinstance() — 运行时类型检查 ===
+  42 是整数, 二进制: 0b101010
+  3.14 是浮点数, 科学计数法: 3.14e+00
+  'hello' 是字符串, 长度: 5
+  [1, 2, 3] 是序列, 长度: 3
+  (1, 2) 是序列, 长度: 2
+
+=== 类型错误是运行时的 ===
+add_one(41) = 42
+add_one('hello') → TypeError: can only concatenate str (not "int") to str

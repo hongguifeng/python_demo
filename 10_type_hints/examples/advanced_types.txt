@@ -1,0 +1,62 @@
+=== 泛型 (Generic) — 类似 C++ 模板 ===
+int_stack: Stack([1, 2])
+str_stack: Stack(['hello', 'world'])
+
+=== 泛型函数 ===
+first([1,2,3]) = 1
+first(['a','b']) = a
+clamp(15, 0, 10) = 10
+clamp(3.5, 0.0, 10.0) = 3.5
+
+=== Protocol — 结构化子类型 ===
+  list: size = 3
+  str: size = 5
+  MyContainer: size = 2
+list 是 Sizeable: True
+int 是 Sizeable: False
+
+=== Final — 类似 const ===
+MAX_SIZE = 100
+
+=== Literal — 字面量类型 ===
+模式设置为: read
+
+=== TypeGuard — 类型收窄 ===
+字符串列表: hello, world
+
+=== @overload — 函数重载 ===
+double(5) = 10
+double('hi') = hihi
+
+=== 新式泛型语法 (Python 3.12+) ===
+# Python 3.12+ 的简洁语法:
+
+def first[T](items: list[T]) -> T:
+    return items[0]
+
+class Stack[T]:
+    def push(self, item: T) -> None: ...
+    def pop(self) -> T: ...
+
+type Point = tuple[float, float]
+type Matrix[T] = list[list[T]]
+
+# 不再需要 TypeVar！
+
+=== 类型检查工具 ===
+工具:
+  mypy:    pip install mypy && mypy script.py
+  pyright: pip install pyright && pyright script.py
+  pylance: VS Code 扩展（基于 pyright）
+
+常用 mypy 配置 (mypy.ini):
+  [mypy]
+  python_version = 3.12
+  strict = true
+  warn_return_any = true
+  warn_unused_configs = true
+
+严格模式会检查:
+  - 所有函数必须有类型注解
+  - 不允许隐式 Any
+  - 不允许未类型化的装饰器

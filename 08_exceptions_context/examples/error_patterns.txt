@@ -1,0 +1,12 @@
+=== 模式 1: 哨兵值 vs 异常 ===
+C 风格: 未找到
+Python 风格: 未找到
+
+=== 模式 2: 异常分组 (Python 3.11+) ===
+Traceback (most recent call last):
+  File "/home/gfhong/testcode/python_demo/./08_exceptions_context/examples/error_patterns.py", line 53, in <module>
+    validate({"name": "", "age": "not_int"})
+  File "/home/gfhong/testcode/python_demo/./08_exceptions_context/examples/error_patterns.py", line 47, in validate
+    if data.get("age", 0) < 0:
+       ^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'str' and 'int'

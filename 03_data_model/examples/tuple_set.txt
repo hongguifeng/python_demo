@@ -1,0 +1,35 @@
+=== tuple — 不可变序列 ===
+point = (3, 4), type = tuple
+single = (42,), type = tuple
+not_tuple = 42, type = int
+
+tuple 作为 dict key: locations[(0,0)] = origin
+list 作为 key: TypeError: unhashable type: 'list'
+
+=== namedtuple — 轻量 struct ===
+p = Point(x=3.0, y=4.0)
+p.x = 3.0, p.y = 4.0
+p[0] = 3.0
+距离 = 5.00
+p2 = Point(x=5.0, y=4.0)
+
+========================================
+=== set — 无序不重复集合 ===
+s1 = {1, 2, 3, 4, 5}
+s2 = {4, 5, 6, 7, 8}
+
+交集 s1 & s2:       {4, 5}
+并集 s1 | s2:       {1, 2, 3, 4, 5, 6, 7, 8}
+差集 s1 - s2:       {1, 2, 3}
+对称差集 s1 ^ s2:   {1, 2, 3, 6, 7, 8}
+子集 {1,2} <= s1:  {1,2} <= s1 = True
+
+去重: [1, 2, 2, 3, 3, 3, 4, 4, 4, 4] → [1, 2, 3, 4]
+保序去重: [1, 2, 3, 4]
+dict.fromkeys 去重: [1, 2, 3, 4]
+
+3 in s1: True
+
+=== frozenset ===
+frozenset: frozenset({1, 2, 3})
+set of frozensets: {frozenset(), frozenset({2}), frozenset({1}), frozenset({1, 2})}

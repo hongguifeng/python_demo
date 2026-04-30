@@ -1,0 +1,44 @@
+=== 基本 try/except ===
+10 / 3 = 3.3333
+10 / 0 = inf
+
+=== 完整的 try 语句 ===
+  成功: 20.0
+  finally: 清理完成
+  ValueError: invalid literal for int() with base 10: 'abc'
+  finally: 清理完成
+  ZeroDivisionError
+  finally: 清理完成
+
+=== 异常层次结构 ===
+BaseException
+├── SystemExit           # sys.exit()
+├── KeyboardInterrupt    # Ctrl+C
+├── GeneratorExit        # generator.close()
+└── Exception            # ← 通常只捕获这个
+    ├── StopIteration
+    ├── ArithmeticError
+    │   ├── ZeroDivisionError
+    │   └── OverflowError
+    ├── LookupError
+    │   ├── IndexError
+    │   └── KeyError
+    ├── OSError
+    │   ├── FileNotFoundError
+    │   └── PermissionError
+    ├── TypeError
+    ├── ValueError
+    ├── AttributeError
+    └── RuntimeError
+
+=== 自定义异常 ===
+验证错误: age: invalid value: -5
+  字段: age
+
+=== raise from — 异常链 ===
+应用错误: 配置文件加载失败: /nonexistent/config.yaml
+原因: [Errno 2] No such file or directory: '/nonexistent/config.yaml'
+
+=== 异常在循环中使用 ===
+  1   2   3 (结束)
+d['b'] with fallback: default

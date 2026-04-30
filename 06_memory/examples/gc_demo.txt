@@ -1,0 +1,43 @@
+=== 循环引用问题 ===
+创建循环引用:
+del a, b 后 — 引用计数不为 0，但已无法访问
+强制 GC:
+  销毁 A
+  销毁 B
+
+=== GC 分代回收 ===
+当前各代对象数:   (1, 0, 0)
+GC 触发阈值:      (700, 10, 10)
+GC 启用状态:       True
+  第0代: collections=8, collected=103
+  第1代: collections=0, collected=0
+  第2代: collections=1, collected=25
+
+=== weakref — 弱引用 ===
+创建对象并建立弱引用:
+  strong ref: CacheEntry('user_1', {'name': 'Alice'})
+  weak ref(): CacheEntry('user_1', {'name': 'Alice'})
+  refcount:   2
+
+删除强引用:
+  CacheEntry('user_1') 被回收
+  weak ref(): None
+
+=== WeakValueDictionary — 弱引用缓存 ===
+缓存中: ['data_1', 'data_2']
+del obj1 后: ['data_2']
+del obj2 后: []
+
+=== __del__ 的注意事项 ===
+⚠️ C++ 开发者注意:
+1. __del__ 不等于析构函数
+   - 调用时机不确定（GC 决定）
+   - 循环引用中可能不被调用
+   - 解释器退出时可能跳过
+
+2. 不要在 __del__ 中做资源清理
+   - 使用 context manager (with 语句) 代替
+   - 使用 atexit 模块处理退出清理
+
+3. __del__ 中不要访问全局变量
+   - 解释器退出时全局变量可能已被删除

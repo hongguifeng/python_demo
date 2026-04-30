@@ -1,0 +1,46 @@
+/home/gfhong/testcode/python_demo/./07_iterators_generators/examples/generator_advanced.py:107: DeprecationWarning: the (type, exc, tb) signature of throw() is deprecated, use the single-arg signature instead.
+  result = gen.throw(ValueError, "测试错误")  # 向生成器抛异常
+=== 生成器作为协程（简单版）===
+  send(10): 平均值 = 10.0
+  send(20): 平均值 = 15.0
+  send(30): 平均值 = 20.0
+  send(40): 平均值 = 25.0
+  send(50): 平均值 = 30.0
+
+=== 生成器实现状态机 ===
+  周期 0: 🟢 GREEN
+  周期 1: 🟢 GREEN
+  周期 2: 🟢 GREEN
+  周期 3: 🟡 YELLOW
+  周期 4: 🔴 RED
+  周期 5: 🔴 RED
+  周期 6: 🟢 GREEN
+  周期 7: 🟢 GREEN
+  周期 8: 🟢 GREEN
+  周期 9: 🟡 YELLOW
+
+=== 生成器实现上下文管理器 ===
+  结果: 499999500000
+  [计算] 耗时: 0.013773s
+
+修改前: debug=False
+修改中: debug=True
+修改后: debug=False
+
+=== 生成器的 close() 和 throw() ===
+  获取资源
+  next: data
+  释放资源 (GeneratorExit)
+
+  获取资源
+  next: data
+  处理异常: 测试错误
+  throw result: error_handled
+
+=== 实际应用：分块读取 ===
+原始: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+分块(5):
+  [0, 1, 2, 3, 4]
+  [5, 6, 7, 8, 9]
+  [10, 11, 12, 13, 14]
+  [15, 16]

@@ -1,0 +1,24 @@
+=== 鸭子类型基础 ===
+  FileSource: file content
+  NetworkSource: network data
+  DatabaseSource: [1, 2, 3]
+
+=== 内置协议就是鸭子类型 ===
+牌数: 52
+第一张: 2♠
+最后一张: A♣
+前3张: ['2♠', '3♠', '4♠']
+随机抽: 4♥
+'A♠' in deck: True
+
+=== Protocol（Python 3.8+）— 结构化鸭子类型 ===
+Circle 是 Drawable: True
+Square 是 Drawable: True
+NotDrawable 是 Drawable: False
+  绘制: ○ (r=5)
+  绘制: □ (s=3)
+
+=== EAFP vs LBYL ===
+LBYL timeout: 30
+EAFP timeout: 30
+getattr timeout: 30

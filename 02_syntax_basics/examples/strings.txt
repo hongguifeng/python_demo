@@ -1,0 +1,38 @@
+=== 字符串是不可变的 ===
+原始: hello, 新的: Hello
+
+=== 字符串字面量 ===
+单引号: hello
+双引号: hello
+三引号: '多行\n字符串'
+原始串: 不转义 \n \t
+f-string: 1 + 1 = 2
+
+=== f-string 格式化（对比 printf/sprintf）===
+Name: Alice      Age: 030 Pi: 3.14
+2^10 = 1024
+大写: HELLO
+x = 42
+x * 2 = 84
+
+=== 常用字符串方法（C 中需要 <string.h>）===
+strip():    'Hello, World!'
+split(','):  ['a', 'b', 'c']
+join():     a,b,c
+replace():  heLLo
+startswith: True
+find():     6
+count():    3
+isdigit():  True
+
+=== 字符串与字节串（C 开发者必知）===
+str:   '你好世界' (len=4)
+bytes: b'\xe4\xbd\xa0\xe5\xa5\xbd\xe4\xb8\x96\xe7\x95\x8c' (len=12)
+back:  '你好世界'
+
+=== 字符串是序列 ===
+索引:  s[0]='P', s[-1]='n'
+切片:  s[1:4]='yth'
+反转:  s[::-1]='nohtyP'
+遍历:  ['P', 'y', 't', 'h', 'o', 'n']
+成员:  True = True

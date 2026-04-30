@@ -1,0 +1,30 @@
+=== 基本线程 ===
+  [Thread-0] 开始工作
+  [Thread-1] 开始工作
+  [Thread-2] 开始工作
+  [Thread-0] 完成 (0.5s)
+  [Thread-1] 完成 (0.5s)
+  [Thread-2] 完成 (0.5s)
+总耗时: 0.50s (3个线程并行)
+
+=== GIL 对 CPU 密集型的影响 ===
+CPU 密集型任务 (2次):
+  单线程: 0.486s
+  多线程: 0.497s
+  多线程更慢
+  (GIL 导致 CPU 密集型多线程没有加速效果)
+
+=== 线程同步 ===
+不安全计数 (期望 200000): 200000
+安全计数 (期望 200000): 200000
+
+=== 线程本地存储 ===
+  Thread T-0: local_data.name = worker_0
+  Thread T-1: local_data.name = worker_1
+  Thread T-2: local_data.name = worker_2
+
+=== 其他同步原语 ===
+  等待事件...
+  事件触发!
+
+其他: Semaphore, Condition, Barrier（和 POSIX 线程一样）

@@ -1,0 +1,59 @@
+=== async/await 基础 ===
+顺序执行:
+  [A] 开始请求...
+  [A] 完成 (0.5s)
+  [B] 开始请求...
+  [B] 完成 (0.5s)
+  [C] 开始请求...
+  [C] 完成 (0.5s)
+  顺序结果: ['A_result', 'B_result', 'C_result']
+  顺序耗时: 1.50s
+
+并发执行:
+  [A] 开始请求...
+  [B] 开始请求...
+  [C] 开始请求...
+  [A] 完成 (0.5s)
+  [B] 完成 (0.5s)
+  [C] 完成 (0.5s)
+  并发结果: ['A_result', 'B_result', 'C_result']
+  并发耗时: 0.50s
+
+=== 异步迭代器 ===
+异步 for 循环:
+  0  1  2  3  4
+
+=== 异步上下文管理器 ===
+  异步连接 postgres://localhost
+  查询: 结果: SELECT 1
+  异步断开 postgres://localhost
+
+=== Task 和取消 ===
+  长操作开始...
+  长操作被取消!
+  任务已取消
+
+=== Semaphore 限流 ===
+  [req-0] 开始 (并发数受限)
+  [req-1] 开始 (并发数受限)
+  [req-2] 开始 (并发数受限)
+  [req-3] 开始 (并发数受限)
+  [req-4] 开始 (并发数受限)
+  结果: ['req-0', 'req-1', 'req-2', 'req-3', 'req-4']
+  耗时: 0.90s (受限于并发数2)
+
+=== async 与 sync 的对比 ===
+同步 (requests):
+    response = requests.get(url)
+    data = response.json()
+
+异步 (aiohttp):
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as response:
+            data = await response.json()
+
+核心原则:
+  - await 只能在 async 函数中使用
+  - async 函数必须用 await 调用（或 asyncio.run）
+  - 不要在 async 中调用阻塞的同步函数（会阻塞事件循环）
+  - 需要调用同步代码时用 asyncio.to_thread()

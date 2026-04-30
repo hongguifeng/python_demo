@@ -1,0 +1,61 @@
+=== timeit — 微基准测试 ===
+list(range()):   0.1555s
+[i for i in ...]: 0.2337s
+[*range()]:      0.1350s
+
+字符串操作:
+生成器 join: 0.0805s
+列表 join:   0.0626s (通常更快，因为 join 需要两次遍历)
+
+=== cProfile — 函数级性能分析 ===
+cProfile 分析 process_data():
+         5004 function calls in 0.001 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.001    0.001    0.001    0.001 /home/gfhong/testcode/python_demo/./15_performance/examples/profiling.py:45(process_data)
+     5000    0.000    0.000    0.000    0.000 /home/gfhong/testcode/python_demo/./15_performance/examples/profiling.py:56(<lambda>)
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.sorted}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.sum}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+
+
+
+
+=== time.perf_counter — 手动计时 ===
+list 查找:   0.5721ms
+set 查找:    0.000137ms
+dict 查找:   0.000126ms
+
+=== sys.getsizeof — 内存分析 ===
+结构                                 浅大小
+----------------------------------------
+list[1000 int]                 8,056 B
+tuple(1000 int)                8,040 B
+set(1000 int)                 32,984 B
+dict(1000 items)              36,952 B
+
+=== 常用分析工具总结 ===
+内置工具:
+  timeit      — 微基准测试（最精确的计时）
+  cProfile    — 函数级性能分析
+  profile     — 纯 Python 实现（更慢但可扩展）
+  tracemalloc — 内存分配追踪
+
+第三方工具:
+  line_profiler  — 逐行分析（@profile 装饰器）
+    pip install line_profiler
+    kernprof -l -v script.py
+
+  memory_profiler — 逐行内存分析
+    pip install memory_profiler
+    python -m memory_profiler script.py
+
+  py-spy         — 采样分析器（低开销，可附加到运行中的进程）
+    pip install py-spy
+    py-spy record -o profile.svg -- python script.py
+
+  scalene        — CPU + 内存 + GPU 分析
+    pip install scalene
+    scalene script.py

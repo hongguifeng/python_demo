@@ -1,0 +1,56 @@
+=== 加载系统 C 库 ===
+libc.abs(-42) = 42
+libc.time(NULL) = 1777527312
+
+=== 查找库路径 ===
+libm 路径: libm.so.6
+libc 路径: libc.so.6
+
+=== 类型映射 ===
+C 类型          ctypes 类型        Python 类型
+-------         ------------       -----------
+char            c_char             bytes
+int             c_int              int
+long            c_long             int
+float           c_float            float
+double          c_double           float
+char*           c_char_p           bytes
+void*           c_void_p           int/None
+int*            POINTER(c_int)     ctypes 指针
+
+
+=== 加载 libm 并调用数学函数 ===
+libm.sqrt(2.0) = 1.4142135623730951
+libm.pow(2.0, 10.0) = 1024.0
+
+=== 结构体 ===
+结构体: Point(3.0, 4.0)
+sizeof(Point) = 16 bytes
+x offset = 0, y offset = 8
+  Point(1.0, 1.0)
+  Point(2.0, 2.0)
+  Point(3.0, 3.0)
+
+=== 指针操作 ===
+值: 42
+指针解引用: 42
+通过指针修改...
+修改后: 100
+
+数组: [10, 20, 30, 40, 50]
+arr[2] = 30
+
+=== 回调函数 ===
+排序前: [5, 3, 1, 4, 2, 6]
+排序后: [1, 2, 3, 4, 5, 6]
+
+=== 性能注意事项 ===
+ctypes 的开销:
+  - 每次调用有类型转换开销
+  - 不适合频繁调用简单函数
+  - 适合调用执行时间较长的函数
+
+如果需要更高性能:
+  - cffi: 更现代，JIT 友好（PyPy 推荐）
+  - pybind11: C++ 绑定首选
+  - Cython: 将 Python 编译为 C

@@ -1,0 +1,53 @@
+=== 技巧 1: 使用内置函数（C 实现）===
+  Python 循环 sum                       15.50ms
+  内置 sum(range())                      6.53ms
+
+=== 技巧 2: 列表推导式 vs 循环 ===
+  for 循环 + append                     47.45ms
+  列表推导式                               33.66ms
+  map(lambda)                         49.79ms
+
+=== 技巧 3: 字符串拼接 ===
+  字符串 +=                               4.14ms
+  join(生成器)                            6.04ms
+  join(列表)                             5.22ms
+
+=== 技巧 4: 查找性能 ===
+  list 中查找 (O(n))                    328.45ms
+  set 中查找 (O(1))                       0.05ms
+
+=== 技巧 5: 局部变量 vs 全局变量 ===
+  全局变量访问                              20.68ms
+  局部变量访问                              19.58ms
+
+=== 技巧 6: 缓存 ===
+  fibonacci(30) 无缓存                  103.48ms
+  fibonacci(30) lru_cache              0.02ms
+
+=== 技巧 7: 选择合适的数据结构 ===
+  list.insert(0, x) O(n²)            269.98ms
+  deque.appendleft(x) O(n)             1.98ms
+
+=== 技巧 8: __slots__ 节省内存和加速 ===
+  普通类创建实例                             43.92ms
+  __slots__ 创建实例                      35.96ms
+
+=== 优化决策树 ===
+性能不够?
+│
+├── 算法复杂度有问题? → 换更好的算法 (最大收益!)
+│
+├── Python 循环太慢? → 用内置函数/推导式/NumPy
+│
+├── I/O 是瓶颈? → asyncio / 多线程
+│
+├── CPU 是瓶颈?
+│   ├── 可以并行? → multiprocessing / ProcessPoolExecutor
+│   └── 热点代码? → C 扩展 / Cython / pybind11
+│
+├── 内存不够?
+│   ├── 大数据? → 生成器 / 流式处理
+│   └── 对象太多? → __slots__ / array / numpy
+│
+└── 以上都不行? → 考虑其他语言 (Rust/Go/C++)
+                   或者 PyPy (JIT 编译的 Python)

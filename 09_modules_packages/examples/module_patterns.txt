@@ -1,0 +1,33 @@
+=== 模式 1: 延迟导入（解决循环导入）===
+延迟导入: {"status": "ok"}
+
+=== 模式 2: 可选依赖 ===
+NumPy 不可用 — 使用回退实现
+
+=== 模式 3: 插件系统 ===
+  插件 json: json
+  插件 path: posixpath
+
+=== 模式 4: 模块级别的 __getattr__（Python 3.7+）===
+模块级 __getattr__: 允许延迟加载模块属性
+
+=== 模式 5: 包的 __init__.py 作为门面 ===
+# mypackage/__init__.py
+from .core import MainClass
+from .utils import helper_func
+
+__all__ = ["MainClass", "helper_func"]
+
+# 用户只需要:
+# from mypackage import MainClass
+# 而不是:
+# from mypackage.core import MainClass
+
+=== 模式 6: 配置文件模式 ===
+Config.DATABASE_URL = sqlite:///default.db
+Config.DEBUG = False
+Config.PORT = 8080
+
+=== 模式 7: if __name__ == '__main__' ===
+  这是主程序逻辑
+  所有测试通过

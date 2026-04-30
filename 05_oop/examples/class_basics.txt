@@ -1,0 +1,26 @@
+=== 基本类定义 ===
+p1 = Point(3, 4)
+p2 = Point(0, 0)
+距离: 5.00
+维度: 2
+
+=== 没有真正的 private ===
+public: Alice
+'protected': 1000
+'private' (mangled): 136636162380272
+
+=== 类是动态的 ===
+p.z = 3
+p.__dict__ = {'x': 1, 'y': 2, 'z': 3}
+p1.magnitude() = 5.00
+
+=== __slots__ — 限制动态属性 ===
+
+普通 Point 实例大小:    328 bytes (含 __dict__)
+FixedPoint 实例大小:   48 bytes (无 __dict__)
+
+=== 类方法 vs 静态方法 ===
+d1 = Date(2024, 1, 15)
+d2 = Date(2024, 6, 20)
+d3 = Date(2026, 4, 30)
+Date.is_valid(2024, 13, 1) = False

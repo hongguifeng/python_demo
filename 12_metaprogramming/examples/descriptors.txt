@@ -1,0 +1,24 @@
+=== 描述符协议 ===
+p.name = Alice, p.age = 30
+验证失败: age: invalid value -5
+验证失败: name: invalid value ''
+
+=== @property 的本质 ===
+
+100°C = 212.0°F
+0.0°C = 32.0°F
+
+=== 实现 @property 的简化版 ===
+radius = 5, area = 78.54
+radius = 10, area = 314.16
+
+=== __getattr__ 和 __getattribute__ ===
+
+config.host = localhost
+config.port = 8080
+config.debug = True
+
+=== 缓存属性描述符 ===
+  [计算统计信息...]
+第一次: {'mean': 5.5, 'min': 1, 'max': 10}
+第二次: {'mean': 5.5, 'min': 1, 'max': 10}

@@ -1,0 +1,24 @@
+=== Python 没有块作用域 ===
+x = 42
+循环变量 i = 4, last = 4
+
+=== LEGB 规则 ===
+  L: local
+  E: enclosing
+  G: global
+  B: <built-in function len>
+
+=== global 和 nonlocal 关键字 ===
+counter = 2
+
+闭包计数器: 1, 2, 3
+
+=== 变量生命周期 ===
+创建资源:
+  创建 R1
+重新赋值:
+  创建 R2
+  销毁 R1
+函数结束前
+  销毁 R2
+del r 之后

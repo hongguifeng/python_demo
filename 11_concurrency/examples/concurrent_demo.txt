@@ -1,0 +1,48 @@
+=== ThreadPoolExecutor — I/O 并发 ===
+下载 6 页:
+  内容 from https://example.com/page/0
+  内容 from https://example.com/page/1
+  内容 from https://example.com/page/2
+  ... 共 6 个结果
+  耗时: 0.60s (3 线程并发)
+
+=== Future 对象 ===
+Future 状态: running=True
+Future 结果: 内容 from https://example.com
+Future 完成: True
+
+=== as_completed — 按完成顺序获取 ===
+按完成顺序:
+  [快] 快任务 (耗时 0.1s)
+  [中] 中任务 (耗时 0.3s)
+  [慢] 慢任务 (耗时 0.5s)
+
+=== ProcessPoolExecutor — CPU 并行 ===
+CPU 密集型 (4次):
+  单进程: 0.366s
+  多进程: 0.166s
+  加速比: 2.2x
+
+=== 错误处理 ===
+  任务 0: 0
+  任务 1: 1
+  任务 2: 4
+  任务 3: 错误 - 不能处理 3
+  任务 4: 16
+
+=== 选择指南 ===
+ThreadPoolExecutor:
+      ✓ I/O 密集型（网络、文件、数据库）
+      ✓ 轻量（共享内存）
+      ✓ 简单（和主进程共享对象）
+
+    ProcessPoolExecutor:
+      ✓ CPU 密集型（计算、数据处理）
+      ✓ 绕过 GIL
+      ✗ 序列化开销（进程间传递数据要 pickle）
+      ✗ 内存开销大
+
+    asyncio:
+      ✓ 超高并发 I/O（数万连接）
+      ✓ 无锁编程（单线程）
+      ✗ 需要异步库支持

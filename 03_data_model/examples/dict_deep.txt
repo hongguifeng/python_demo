@@ -1,0 +1,46 @@
+=== 创建 dict ===
+person = {'name': 'Alice', 'age': 30, 'city': 'Beijing'}
+config = {'host': 'localhost', 'port': 8080, 'debug': True}
+dict(pairs) = {'a': 1, 'b': 2, 'c': 3}
+
+=== 基本操作 ===
+d['x'] = 1
+d.get('w') = None
+d.get('w', 0) = 0
+设置 d['w']=4: {'x': 1, 'y': 2, 'z': 3, 'w': 4}
+del d['w']: {'x': 1, 'y': 2, 'z': 3}
+d.pop('z') = 3, d = {'x': 1, 'y': 2}
+
+=== 遍历 ===
+遍历键:
+  Alice
+  Bob
+  Charlie
+遍历键值对:
+  Alice: 95
+  Bob: 87
+  Charlie: 92
+遍历值:
+  95
+  87
+  92
+
+=== dict 的高级用法 ===
+词频统计: {'hello': 3, 'world': 2, 'python': 1}
+Counter:  {'hello': 3, 'world': 2, 'python': 1}
+最常见:   [('hello', 3), ('world', 2)]
+
+邻接表: {'A': ['B', 'C'], 'B': ['C'], 'C': ['A']}
+
+=== dict 合并 ===
+d1 | d2 = {'a': 1, 'b': 3, 'c': 4}
+d1 |= d2: d1 = {'a': 1, 'b': 3, 'c': 4}
+
+=== dict 推导式 ===
+平方表: {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+反转:   {0: 0, 1: 1, 4: 2, 9: 3, 16: 4, 25: 5}
+
+=== 为什么 dict 如此重要 ===
+
+对象的 __dict__: {'x': 1, 'y': 2}
+模块的 __dict__ 包含: ['person', 'config', 'pairs', 'd', 'val', 'scores', 'key', 'value']...

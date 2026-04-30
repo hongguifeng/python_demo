@@ -1,0 +1,54 @@
+=== import 的几种形式 ===
+os.getcwd() = /home/gfhong/testcode/python_demo
+join('/tmp', 'test') = /tmp/test
+Counter: Counter({'l': 2, 'h': 1, 'e': 1, 'o': 1})
+now: 2026-04-30T13:35:03.910422
+
+=== 模块搜索顺序 ===
+sys.path (模块搜索路径):
+  [0] /home/gfhong/testcode/python_demo/09_modules_packages/examples
+  [1] /usr/lib/python312.zip
+  [2] /usr/lib/python3.12
+  [3] /usr/lib/python3.12/lib-dynload
+  [4] /home/gfhong/.local/lib/python3.12/site-packages
+  [5] /usr/local/lib/python3.12/dist-packages
+  ... 共 7 个路径
+
+=== 模块是对象 ===
+json 模块:
+  类型:  <class 'module'>
+  文件:  /usr/lib/python3.12/json/__init__.py
+  名称:  json
+  包:    json
+
+=== 模块只导入一次 ===
+json 在 sys.modules 中: True
+同一个对象: True
+
+=== __name__ 和 __main__ ===
+当前模块的 __name__ = '__main__'
+
+=== 包结构 ===
+mypackage/                  # 包目录
+├── __init__.py             # 包的初始化代码（import mypackage 时执行）
+├── __main__.py             # python -m mypackage 时执行
+├── core.py                 # 子模块
+├── utils.py                # 子模块
+└── subpackage/             # 子包
+    ├── __init__.py
+    └── helpers.py
+
+导入方式:
+  import mypackage                    # 执行 __init__.py
+  from mypackage import core          # 导入子模块
+  from mypackage.core import MyClass  # 导入具体名称
+  from mypackage.subpackage import helpers
+
+=== __all__ 控制导出 ===
+os.__all__ 中的前 10 个: ['altsep', 'curdir', 'pardir', 'sep', 'pathsep', 'linesep', 'defpath', 'name', 'path', 'devnull']
+
+=== 动态导入 ===
+动态导入 json: [1, 2, 3]
+
+=== 常见陷阱 ===
+避免: from module import * (除了在 __init__.py 中收集子模块)

@@ -1,0 +1,51 @@
+=== 基本 with 语句 ===
+文件已关闭: True
+内容: Hello, World!
+
+=== 自定义上下文管理器（类实现）===
+  连接到 postgres://localhost/mydb
+  连接状态: True
+  断开 postgres://localhost/mydb
+连接状态: False
+
+异常情况:
+  连接到 postgres://localhost/mydb
+  断开 postgres://localhost/mydb
+  捕获: 查询失败
+
+=== 多个上下文管理器 ===
+
+=== contextlib 工具 ===
+  总和: 499999500000
+  [求和] 0.022066s
+
+suppress:
+  继续执行（异常被抑制）
+
+redirect_stdout:
+  捕获的输出: '这会写入 buffer 而非终端\n第二行\n'
+
+=== 上下文管理器 vs RAII ===
+相同点:
+  - 都保证资源清理
+  - 都能处理异常
+
+不同点:
+  - RAII 是隐式的（作用域结束自动调用）
+  - with 是显式的（必须在 with 块中）
+  - RAII 绑定到对象生命周期
+  - with 绑定到代码块
+
+  C++:
+    {
+        std::lock_guard<std::mutex> lock(mtx);
+        // 自动释放
+    }
+
+  Python:
+    with lock:
+        # 自动释放
+        pass
+
+  Python 没有隐式 RAII，因为 __del__ 调用时机不确定。
+  所以需要 with 来保证确定性清理。

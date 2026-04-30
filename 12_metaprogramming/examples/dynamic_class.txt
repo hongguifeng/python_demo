@@ -1,0 +1,22 @@
+=== 动态创建类 ===
+动态类: Point(x=1, y=2)
+动态类: Color(r=255, g=128, b=0)
+
+=== 猴子补丁 (Monkey Patching) ===
+原始: calc.add(1, 2) = 3
+补丁后: calc.subtract(5, 3) = 2
+  [log] add(3, 4) = 7
+
+=== 装饰器 vs 元类 vs __init_subclass__ ===
+装饰器注册: ['HandlerA', 'HandlerB']
+__init_subclass__ 注册: ['HandlerC', 'HandlerD']
+
+=== __getattr__ 实现代理模式 ===
+代理列表: [1, 2, 3, 4]
+操作日志: [('append', (1,), {}), ('append', (2,), {}), ('extend', ([3, 4],), {})]
+
+=== exec/eval — 最极端的动态性 ===
+eval('2**10+1') = 1025
+exec 生成的函数: func(5) = 26
+
+⚠️  eval/exec 有严重的安全风险，不要对不信任的输入使用
