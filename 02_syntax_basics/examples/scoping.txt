@@ -8,6 +8,23 @@ x = 42
   G: global
   B: <built-in function len>
 
+=== 同名变量的遮蔽（Shadowing）===
+  inner sees:     x = 'local x'
+  no-shadow sees: x = 'enclosing x'
+  outer sees:     x = 'enclosing x'
+module sees:      x = 'global x'
+  shadowed len([1,2,3]) = 'oops'
+  built-in len([1,2,3]) = 3
+
+=== 同名变量：修改时的陷阱 ===
+  读取外层 val = 100
+  UnboundLocalError: cannot access local variable 'val' where it is not associated with a value
+  global 修改后 val = 101
+模块级 val = 101
+  nonlocal 陷阱 UnboundLocalError: cannot access local variable 'v' where it is not associated with a value
+  nonlocal 修改后 v = 15
+  outer v = 15
+
 === global 和 nonlocal 关键字 ===
 counter = 2
 
