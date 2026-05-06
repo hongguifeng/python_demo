@@ -27,10 +27,8 @@ print(f"  字节序:     {sys.byteorder}")
 
 print(f"\n--- 路径信息 ---")
 print(f"  模块搜索路径 (类似 -I include path):")
-for p in sys.path[:5]:
+for p in sys.path:
     print(f"    {p}")
-if len(sys.path) > 5:
-    print(f"    ... 共 {len(sys.path)} 个路径")
 
 print(f"\n--- 资源限制 ---")
 print(f"  最大递归深度:     {sys.getrecursionlimit()}")

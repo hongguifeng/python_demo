@@ -21,7 +21,8 @@ Python 运行环境信息
     /usr/lib/python3.12
     /usr/lib/python3.12/lib-dynload
     /home/gfhong/.local/lib/python3.12/site-packages
-    ... 共 7 个路径
+    /usr/local/lib/python3.12/dist-packages
+    /usr/lib/python3/dist-packages
 
 --- 资源限制 ---
   最大递归深度:     1000
