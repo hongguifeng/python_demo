@@ -51,7 +51,13 @@ nested = [[1, 2], [3, 4]]
 shallow = nested.copy()     # 浅拷贝：外层新建，内层共享
 deep = copy.deepcopy(nested)  # 深拷贝：全部新建
 
-nested[0].append(99)
+print(f"nested is shallow: {nested is shallow}      (外层对象不同)")
+print(f"nested[0] is shallow[0]: {nested[0] is shallow[0]}  (内层对象共享)")
+print(f"nested[0] is deep[0]: {nested[0] is deep[0]}      (深拷贝内层不共享)")
+
+nested.append([5, 6])  # 修改外层对象
+nested[0].append(99) # 修改内层对象
+
 print(f"original: {nested}")
 print(f"shallow:  {shallow}  ← 内层对象被影响了！")
 print(f"deep:     {deep}     ← 完全独立")
