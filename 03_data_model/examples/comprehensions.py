@@ -2,9 +2,26 @@
 推导式 (Comprehensions) — Python 最强大的语法糖之一
 
 C/C++ 没有等价物（C++20 ranges 有点接近但远不如简洁）。
+
+语法骨架：
+
+    [expr for item in iterable if condition]
+    {expr for item in iterable if condition}
+    {key: value for item in iterable if condition}
+    (expr for item in iterable if condition)
+
+阅读顺序：
+1. 先看结果表达式 `expr`
+2. 再看数据来源 `for item in iterable`
+3. 最后看过滤条件 `if condition`
+
+如果有多个 `for`，就按从左到右展开成嵌套循环。
 """
 
 print("=== 列表推导式 (List Comprehension) ===")
+
+# 基本形式：
+# [表达式 for 变量 in 可迭代对象 if 条件]
 
 # C 风格：
 # int squares[10];
@@ -26,6 +43,7 @@ for x in range(20):
 assert evens == evens_loop
 
 # 嵌套循环
+# 顺序和普通循环一致：先 for x，再 for y，最后 if
 pairs = [(x, y) for x in range(3) for y in range(3) if x != y]
 print(f"不相等的配对: {pairs}")
 
@@ -44,6 +62,7 @@ flat = [x for row in matrix for x in row]
 print(f"扁平化: {flat}")
 
 print("\n=== 字典推导式 ===")
+# 形式：{key_expr: value_expr for item in iterable if condition}
 # 快速创建映射
 ascii_map = {chr(i): i for i in range(ord('a'), ord('g'))}
 print(f"ASCII 映射: {ascii_map}")
@@ -58,12 +77,14 @@ passed = {k: v for k, v in scores.items() if v >= 60}
 print(f"及格的: {passed}")
 
 print("\n=== 集合推导式 ===")
+# 形式：{expr for item in iterable if condition}
 # 获取所有唯一的首字母
 words = ["apple", "banana", "avocado", "cherry", "blueberry"]
 initials = {w[0] for w in words}
 print(f"首字母: {initials}")
 
 print("\n=== 生成器表达式（延迟计算）===")
+# 形式：(expr for item in iterable if condition)
 # 列表推导式 → 立即生成全部
 # 生成器表达式 → 按需生成（节省内存）
 
